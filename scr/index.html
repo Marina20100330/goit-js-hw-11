@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home work 11</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css /styles.css" />
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="search-container">
-        <form class="form">
-            <label>
-                <input class="input-item" type="text" name="search-text" placeholder="Search images..." required />
-            </label>
+      <form class="form">
+        <label>
+          <input
+            class="input-item"
+            type="text"
+            name="search-text"
+            placeholder="Search images..."
+            required
+          />
+        </label>
 
-            <div>
-                <button class="btn" type="submit">Search</button>
-            </div>
-        </form>
+        <div>
+          <button class="btn" type="submit">Search</button>
+        </div>
+      </form>
     </div>
 
     <div class="loader is-hidden">
-        <span class="loader-text">Loading images, please wait...</span>
-        <div class="loader-animation"></div>
+      <span class="loader-text">Loading images, please wait...</span>
+      <div class="loader-animation"></div>
     </div>
 
     <ul class="gallery"></ul>
 
     <script type="module" src="./main.js"></script>
-</body>
-
+  </body>
 </html>
