@@ -1,14 +1,9 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const galleryEl = document.querySelector('.gallery');
-const loaderEl = document.getElementById('global-loader');
-
-const lightbox = new SimpleLightbox('.gallery a', {
-  captions: true,
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+const galleryList = document.querySelector('.gallery');
+const loader = document.querySelector('.loader');
+const lightbox = new SimpleLightbox('.gallery a');
 
 export function createGallery(images) {
   const markup = images
@@ -22,32 +17,45 @@ export function createGallery(images) {
         comments,
         downloads,
       }) => `
-<li class="gallery__item">
-  <a class="gallery__link" href="${largeImageURL}">
-    <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
-  </a>
-  <ul class="info">
-    <li><b>Likes</b> ${likes}</li>
-    <li><b>Views</b> ${views}</li>
-    <li><b>Comments</b> ${comments}</li>
-    <li><b>Downloads</b> ${downloads}</li>
-  </ul>
-</li>`
+    <li class="gallery-item">
+      <a href="${largeImageURL}">
+        <img class="img" src="${webformatURL}" alt="${tags}" />
+      </a>
+    <div class="info">
+  <div class="info-item">
+    <p class="label">Likes:</p>
+    <p class="value">${likes}</p>
+  </div>
+  <div class="info-item">
+    <p class="label">Views:</p>
+    <p class="value">${views}</p>
+  </div>
+  <div class="info-item">
+    <p class="label">Comments:</p>
+    <p class="value">${comments}</p>
+  </div>
+  <div class="info-item">
+    <p class="label">Downloads:</p>
+    <p class="value">${downloads}</p>
+  </div>
+</div>
+</li>
+  `
     )
     .join('');
 
-  galleryEl.insertAdjacentHTML('beforeend', markup);
+  galleryList.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 }
 
 export function clearGallery() {
-  galleryEl.innerHTML = '';
+  galleryList.innerHTML = '';
 }
 
 export function showLoader() {
-  loaderEl.classList.add('is-active');
+  loader.classList.remove('is-hidden');
 }
 
 export function hideLoader() {
-  loaderEl.classList.remove('is-active');
+  loader.classList.add('is-hidden');
 }

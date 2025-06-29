@@ -1,29 +1,17 @@
-import { getImagesByQuery } from './js/pixabay-api.js';
-import {
-  createGallery,
-  clearGallery,
-  showLoader,
-  hideLoader,
-} from './js/render-functions.js';
+import axios from 'axios';
 
-const form = document.querySelector('.form');
-const gallery = document.querySelector('.gallery');
+const API_KEY = '50349808-906d80db7093834bea09f6975';
+const BASE_URL = 'https://pixabay.com/api/';
 
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  const searchText = e.currentTarget.elements['search-text'].value.trim();
+export async function getImagesByQuery(query) {
+  const params = {
+    key: API_KEY,
+    q: query,
+    image_type: 'photo',
+    orientation: 'horizontal',
+    safesearch: true,
+  };
 
-  if (!searchText) return;
-
-  clearGallery(); // Очищаємо галерею
-  showLoader(); // Вмикаємо лоадер
-
-  try {
-    const images = await getImagesByQuery(searchText);
-    createGallery(images); // Тут всередині викликається lightbox.refresh()
-  } catch (error) {
-    console.error('Помилка при отриманні зображень:', error);
-  } finally {
-    hideLoader();
-  }
-});
+  const response = await axios.get(BASE_URL, { params });
+  return response.data;
+}
