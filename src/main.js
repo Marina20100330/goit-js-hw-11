@@ -21,7 +21,6 @@ form.addEventListener('submit', async e => {
     return;
   }
 
-  
   clearGallery();
   showLoader();
 
